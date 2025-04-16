@@ -1,0 +1,84 @@
+programa ejercicio3
+procesos
+  proceso juntarFlores(ES suma: numero)
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      suma:=suma+1
+  fin
+  proceso dejarFlores
+  comenzar
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+  fin 
+  proceso juntarPapeles(ES suma: numero)
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      suma:= suma+1
+  fin  
+  proceso dejarPapeles
+  comenzar
+    mientras(HayPapelEnLaBolsa)
+      depositarPapel
+  fin  
+  proceso escalon(ES num:numero; ES supero: boolean)
+  variables
+    flores:numero
+    papeles:numero
+  comenzar
+    repetir num
+      juntarFlores(flores)
+      dejarFlores
+      juntarPapeles(papeles) 
+      dejarPapeles
+      mover     
+    derecha 
+    repetir num 
+      juntarFlores(flores)
+      dejarFlores
+      juntarPapeles(papeles) 
+      dejarPapeles    
+      mover    
+    repetir 3
+      derecha  
+    si((papeles-flores)= 1)
+      supero:= V  
+  fin
+  proceso escalera
+  variables
+    num:numero
+    flor:numero
+    cont:numero
+    supero:boolean
+  comenzar
+    num:=0
+    supero:=F
+    repetir 4
+      num:=num+1
+      escalon(num,supero)
+      si(supero = V)
+        cont:=cont+1
+    Informar(cont)    
+  fin  
+areas
+  ciudad: AreaC (1,1,100,100)      
+robots
+  robot robot1
+  variables
+    num: numero
+  comenzar
+    escalera
+  fin 
+variables
+  r1: robot1
+  r2:robot1
+  r3:robot1
+comenzar
+  AsignarArea(r1, ciudad)
+  AsignarArea(r2, ciudad)  
+  AsignarArea(r3, ciudad)
+  Iniciar(r1, 12,14)
+  Iniciar(r2, 17,10)  
+  Iniciar(r3, 22,6)
+fin

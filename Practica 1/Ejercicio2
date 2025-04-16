@@ -1,0 +1,59 @@
+programa ejercicio2
+procesos
+  proceso recorrerAvenida(E numAv: numero; E numCa: numero)
+  variables
+    papeles: numero
+  comenzar
+    papeles:=0
+    Pos(numAv, numCa)
+    repetir 20
+      recorrerPapeles(papeles)
+      mover
+    recorrerPapeles(papeles)  
+    Informar(papeles)  
+  fin
+  proceso recorrerPapeles(ES papel:numero)
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      papel:= papel + 1
+  fin
+areas
+  ciudad: AreaC (1,1,100,100)
+robots
+  robot robot1
+  comenzar
+    recorrerAvenida(10, 10)
+  fin
+  robot robot2
+  comenzar
+    derecha
+    recorrerAvenida(10,30)
+  fin
+  robot robot3
+  comenzar
+    repetir 2
+      derecha
+    recorrerAvenida(30,30)
+  fin
+  robot robot4
+  comenzar
+    repetir 3
+      derecha
+    recorrerAvenida(30,10)
+  fin    
+variables
+  r1: robot1
+  r2: robot2
+  r3: robot3
+  r4: robot4
+comenzar
+  AsignarArea(r1, ciudad)
+  AsignarArea(r2, ciudad)
+  AsignarArea(r3, ciudad)
+  AsignarArea(r4, ciudad)
+  Iniciar(r1, 1,1)
+  Iniciar(r2,10,30)
+  Iniciar(r3, 30,30)
+  Iniciar(r4, 30,10)
+fin

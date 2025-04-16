@@ -1,0 +1,87 @@
+{Bienvenidos al entorno CMRE.
+Lo siguiente es un cÃƒÆ’Ã‚Â³digo de ejemplo que implementa un
+proceso que recibe un nÃƒÆ’Ã‚Âºmero de avenida como parÃƒÆ’Ã‚Â¡metro,
+se posiciona en esa avenida y la recorre.}
+
+programa ejercicio5
+procesos
+  proceso limpiarFlor
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso dejarFlor
+  comenzar
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+  fin  
+  proceso limpiarPapel
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+  proceso dejarPapel
+  comenzar
+    mientras(HayPapelEnLaBolsa)
+      depositarPapel
+  fin    
+  proceso recorrerCalle(E numAv: numero;E numCa:numero; E cantAv: numero)
+  comenzar
+    Pos(numAv, numCa)
+    repetir cantAv
+      mover
+      limpiarFlor
+    dejarFlor  
+  fin
+  proceso recorrerAvenida(E numAv: numero;E numCa:numero;E cantCa: numero)
+  comenzar
+    Pos(numAv, numCa)
+    repetir cantCa
+      mover
+      limpiarPapel
+    Pos(numAv, numCa)  
+    dejarPapel
+  fin   
+areas {area privada para cada robot}
+  area1: AreaP(1,74,17,81)
+  area2: AreaP(74,79,81,100)
+  area3: AreaP(69,9,100,16)
+  area4: AreaP(9,1,16,12)
+robots
+  robot robot1
+  comenzar
+    derecha
+    recorrerCalle(1, 75, 15)
+    recorrerCalle(1, PosCa+5,15)
+  fin
+  robot robot2
+  comenzar
+    recorrerAvenida(75, 80, 20)
+    recorrerAvenida(PosAv+5, 80,20)
+  fin 
+  robot robot3
+  comenzar
+    derecha
+    recorrerCalle(70, 10, 30)
+    recorrerCalle(70, PosCa+5,30)    
+  fin
+  robot robot4
+  comenzar
+    recorrerAvenida(10, 1, 10)
+    recorrerAvenida(PosAv+5, 1,10)
+  fin    
+variables
+  r1:robot1
+  r2:robot2 
+  r3: robot3
+  r4:robot4
+comenzar
+  AsignarArea(r1,area1)
+  AsignarArea(r2,area2)
+  AsignarArea(r3,area3) 
+  AsignarArea(r4,area4) 
+  Iniciar(r1,1,75)
+  Iniciar(r2,75,80) 
+  Iniciar(r3,70,10)
+  Iniciar(r4,10,1)
+fin

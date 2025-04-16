@@ -1,0 +1,53 @@
+programa ejercicio1A
+procesos
+  proceso dejarFlor
+  comenzar
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+  fin
+  proceso recorrerAvenida(E numAv: numero)
+  variables
+    flor: numero 
+    noHay: numero
+  comenzar
+    flor:=0
+    noHay:=0
+    Pos(numAv, 1)
+    repetir 99
+      si(HayFlorEnLaEsquina)
+        juntarFlores(flor)
+      sino
+        si~(HayPapelEnLaEsquina)
+          noHay:=noHay+1
+      mover  
+    si(HayFlorEnLaEsquina)
+      juntarFlores(flor)
+    sino
+      si~(HayPapelEnLaEsquina)
+        noHay:=noHay+1
+    dejarFlor
+    Informar(flor)
+    Informar(noHay)      
+  fin 
+  proceso juntarFlores(ES sumar:numero)
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      sumar:= sumar+1  
+  fin
+  
+areas
+  ciudad: AreaC (1,1,100,100)
+robots
+  robot robot1
+  comenzar
+    recorrerAvenida(1)
+    repetir 2
+      recorrerAvenida(PosAv+2)
+  fin
+variables
+  R_info: robot1
+comenzar
+  AsignarArea(R_info, ciudad)
+  Iniciar(R_info, 1,1)
+fin
